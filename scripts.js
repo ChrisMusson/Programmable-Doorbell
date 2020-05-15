@@ -1,7 +1,7 @@
 var tempos = {
-    "slow": 0.375,
+    "slow": 0.5,
     "medium": 0.75,
-    "fast": 1.5
+    "fast": 1
 }
 
 /* the frequency of each note is base * x**(y) where base is the frequency of middle C,
