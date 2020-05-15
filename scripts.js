@@ -84,13 +84,9 @@ function playSong() {
         oscillator.frequency.setValueAtTime(frequency, time_elapsed);
         time_elapsed += note_duration;
 
-        /* necessary so you can differentiate between consecutive notes of the same frequency
-        not happy with the popping sound it produces though */
-        gainNode.gain.setValueAtTime(0.55, time_elapsed - 0.01);
-        gainNode.gain.setValueAtTime(1, time_elapsed);
-
-        // gainNode.gain.exponentialRampToValueAtTime(0.01, time_elapsed-0.05);
-        // gainNode.gain.exponentialRampToValueAtTime(1, time_elapsed);
+        // reduces poppoing somewhat
+        gainNode.gain.exponentialRampToValueAtTime(0.5, time_elapsed-0.05);
+        gainNode.gain.exponentialRampToValueAtTime(1, time_elapsed);
     }
 
     oscillator.stop(time_elapsed);
