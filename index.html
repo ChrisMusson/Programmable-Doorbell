@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="scripts.js"></script>
+    <script>
+        window.onload = function () {
+
+            var codeForm = document.getElementById("code")
+            function show() { codeForm.style.visibility = "visible"; }
+            function hide() { codeForm.style.visibility = "hidden"; }
+            hide();
+            function toggle() { codeForm.style.visibility == "hidden" ? show() : hide(); }
+
+            document.getElementById("buttonprogram").addEventListener("click", toggle, false);
+            document.getElementById("tempo").value = "MEDIUM"
+        }
+    </script>
+
+
+    <style>
+        .container_1 {
+            width: 375px;
+            display: grid;
+            grid-gap: 25px;
+            background-color: rgba(55, 30, 10, 1);
+            grid-template-rows: 75px;
+            padding: 25px;
+            grid-template-columns: 75px 75px 75px 75px;
+        }
+
+        .container2 {
+            width: 375px;
+            display: grid;
+            grid-gap: 25px;
+            background-color: rgba(55, 30, 10, 1);
+            grid-template-rows: 75px;
+            padding: 0px 25px 25px 25px;
+            grid-template-columns: 75px 275px;
+        }
+
+        .tempo_container {
+            display: grid;
+            background-image: url("tempo.png");
+            background-size: 100%;
+            background-color: rgba(55, 30, 10, 1);
+            border: 0;
+            grid-template-rows: 30px;
+            grid-template-columns: 80px 80px 80px;
+            padding: 38px 10px 10px 10px;
+            grid-gap: 7.5px;
+        }
+
+        .button {
+            width: 75px;
+            height: 75px;
+            border: 0;
+            background-size: 100%;
+            background-color: rgba(55, 30, 10, 1);
+        }
+
+        .tempo_button {
+            border: 0px;
+            text-align: center;
+            font-size: 14px;
+            color: white;
+            background-color: rgba(55, 30, 10, 1);
+        }
+
+        .button0 {
+            background-image: url("0.png");
+        }
+
+        .button1 {
+            background-image: url("1.png");
+        }
+
+        .button2 {
+            background-image: url("2.png");
+        }
+
+        .button3 {
+            background-image: url("3.png");
+        }
+
+        .button4 {
+            background-image: url("4.png");
+        }
+
+        .button5 {
+            background-image: url("5.png");
+        }
+
+        .button6 {
+            background-image: url("6.png");
+        }
+
+        .button7 {
+            background-image: url("7.png");
+        }
+
+        .button8 {
+            background-image: url("8.png");
+        }
+
+        .button9 {
+            background-image: url("9.png");
+        }
+
+        .buttonA {
+            background-image: url("A.png");
+        }
+
+        .buttonb {
+            background-image: url("b.png");
+        }
+
+        .buttonprogram {
+            background-image: url("program.png");
+        }
+
+        .button2nd_octave {
+            background-image: url("2nd_octave.png");
+        }
+
+        .buttontune_test {
+            background-image: url("tune_test.png");
+        }
+
+        .buttonfixed_tune {background-image: url("fixed_tune.png");}
+
+        .buttonreset {
+            background-image: url("reset.png");
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        function updateCode(val) { document.getElementById("code").value += val }
+        function updateTempo(val) { document.getElementById("tempo").value = val }
+        function reset() {
+            document.getElementById("code").value = ""
+            document.getElementById("tempo").value = ""
+        }
+    </script>
+
+    <div class="container_1">
+        <input type="button" id="button0" class="button button0" onClick="updateCode('0')"></input> 
+        <input type="button" id="button1" class="button button1" onClick="updateCode('1')"></input>
+        <input type="button" id="button2" class="button button2" onClick="updateCode('2')"></input>
+        <input type="button" id="button3" class="button button3" onClick="updateCode('3')"></input> 
+        <input type="button" id="button4" class="button button4" onClick="updateCode('4')"></input>
+        <input type="button" id="button5" class="button button5" onClick="updateCode('5')"></input>
+        <input type="button" id="button6" class="button button6" onClick="updateCode('6')"></input>
+        <input type="button" id="button7" class="button button7" onClick="updateCode('7')"></input>
+        <input type="button" id="button8" class="button button8" onClick="updateCode('8')"></input>
+        <input type="button" id="button9" class="button button9" onClick="updateCode('9')"></input>
+        <input type="button" id="buttonA" class="button buttonA" onClick="updateCode('A')"></input>
+        <input type="button" id="buttonb" class="button buttonb" onClick="updateCode('b')"></input>
+        <input type="button" id="buttonprogram" class="button buttonprogram"></input>
+        <input type="button" id="button2nd_octave" class="button button2nd_octave" onClick="updateCode('*')"></input>
+        <input type="button" id="buttontune_test" class="button buttontune_test"></input>
+        <input type="button" id="buttonfixed_tune" class="button buttonfixed_tune" onClick="updateCode(',')"></input>
+    </div>
+
+    <div class="container2">
+        <input type="button" id="buttonreset" class="button buttonreset" onClick="reset()"></input>
+        <div class="tempo_container">
+            <input type="button" id="buttonslow" class="tempo_button" value="SLOW"
+                onClick="updateTempo('SLOW')"></input>
+            <input type="button" id="buttonmedium" class="tempo_button" value="MEDIUM"
+                onClick="updateTempo('MEDIUM')"></input>
+            <input type="button" id="buttonfast" class="tempo_button" value="FAST"
+                onClick="updateTempo('FAST')"></input>
+        </div>
+    </div>
+
+    Press program to enter the NuTone code for your song:
+    <input type="text" id="code" name="code" size="40">
+    <br>
+    Tempo: <input type="text" id="tempo" name="tempo">
+    <br>
+    <button type="button" onClick="playSong()">PLAY</button>
+</body>
+
+</html>
