@@ -34,25 +34,6 @@ var note_lengths = {
 
 
 function playSong() {
-
-    // var AudioContext = window.AudioContext || window.webkitAudioContext;
-    // var audioCtx = new AudioContext();
-    // gainNode = audioCtx.createGain();
-    // osc = audioCtx.createOscillator();
-    // osc.connect(gainNode);
-    // gainNode.connect(audioCtx.destination);
-    // osc.type = "sine";
-
-    // // set frequency and gain
-    // osc.frequency.value = 440;
-    // gainNode.gain.value = 1.0;
-    // gainNode.gain.setValueAtTime(0, audioCtx.currentTime + 1);
-    // gainNode.gain.setValueAtTime(1, audioCtx.currentTime + 1.04);
-    // gainNode.gain.setValueAtTime(0, audioCtx.currentTime + 3);
-
-    // // start and connect
-    // osc.start();
-
     AudioContext = window.AudioContext || window.webkitAudioContext;
     audioCtx = new AudioContext();
     gainNode = audioCtx.createGain();
@@ -60,11 +41,21 @@ function playSong() {
     oscillator.connect(gainNode);
     gainNode.connect(audioCtx.destination);
     oscillator.type = "sine";
-    oscillator.start();
 
     var string = document.getElementById("code").value;
     string = string.replace(/\s/g, "");
     var split_string = string.split(/,/);
+
+    const isValid = (str) => str.match(/^\**[\dAb][0-6]$/);
+    if (!split_string.slice(0, -1).every(isValid)) {
+        alert("That is not a valid code. One or more of your notes doesn't match the form (0 or more asterisks) (0-9 or A or b) (0-6).\n note that this is case sensitive");
+        return;
+    }
+
+    if (split_string[split_string.length - 1] != "00") {
+        alert("The code must end in \"00\"");
+        return;
+    }
 
     const multiplier = tempos[document.getElementById("tempo").value.toLowerCase()];
     const base = 261.626 // frequency of middle C
@@ -72,6 +63,7 @@ function playSong() {
     var i;
     var time_elapsed = 0;
 
+    oscillator.start();
     for (i = 0; i < split_string.length - 1; i++) {
         let input = split_string[i];
         let num_asterisks = input.match(/\*/g) ? input.match(/\*/g).length : 0;
