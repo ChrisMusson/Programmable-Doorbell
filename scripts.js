@@ -48,7 +48,7 @@ function playSong() {
 
     const isValid = (str) => str.match(/^\**[\dAb][0-6]$/);
     if (!split_string.slice(0, -1).every(isValid)) {
-        alert("That is not a valid code. One or more of your notes doesn't match the form (0 or more asterisks) (0-9 or A or b) (0-6).\n note that this is case sensitive");
+        alert("That is not a valid code. One or more of your notes doesn't match the form (0 or more asterisks) (0-9 or A or b) (1-6).\n note that this is case sensitive");
         return;
     }
 
