@@ -127,7 +127,9 @@
             background-image: url("tune_test.png");
         }
 
-        .buttonfixed_tune {background-image: url("fixed_tune.png");}
+        .buttonfixed_tune {
+            background-image: url("fixed_tune.png");
+        }
 
         .buttonreset {
             background-image: url("reset.png");
@@ -137,7 +139,11 @@
 
 <body>
     <script>
-        function updateCode(val) { document.getElementById("code").value += val }
+        function updateCode(val) {
+            if (document.getElementById("code").style.visibility == "visible") {
+                document.getElementById("code").value += val
+            }
+        }
         function updateTempo(val) { document.getElementById("tempo").value = val }
         function reset() {
             document.getElementById("code").value = ""
@@ -145,43 +151,94 @@
         }
     </script>
 
-    <div class="container_1">
-        <input type="button" id="button0" class="button button0" onClick="updateCode('0')"></input> 
-        <input type="button" id="button1" class="button button1" onClick="updateCode('1')"></input>
-        <input type="button" id="button2" class="button button2" onClick="updateCode('2')"></input>
-        <input type="button" id="button3" class="button button3" onClick="updateCode('3')"></input> 
-        <input type="button" id="button4" class="button button4" onClick="updateCode('4')"></input>
-        <input type="button" id="button5" class="button button5" onClick="updateCode('5')"></input>
-        <input type="button" id="button6" class="button button6" onClick="updateCode('6')"></input>
-        <input type="button" id="button7" class="button button7" onClick="updateCode('7')"></input>
-        <input type="button" id="button8" class="button button8" onClick="updateCode('8')"></input>
-        <input type="button" id="button9" class="button button9" onClick="updateCode('9')"></input>
-        <input type="button" id="buttonA" class="button buttonA" onClick="updateCode('A')"></input>
-        <input type="button" id="buttonb" class="button buttonb" onClick="updateCode('b')"></input>
-        <input type="button" id="buttonprogram" class="button buttonprogram"></input>
-        <input type="button" id="button2nd_octave" class="button button2nd_octave" onClick="updateCode('*')"></input>
-        <input type="button" id="buttontune_test" class="button buttontune_test"></input>
-        <input type="button" id="buttonfixed_tune" class="button buttonfixed_tune" onClick="updateCode(',')"></input>
-    </div>
+    <div id="wrapper">
+        <div id="keypad" style="float:left">
+            <div class="container_1">
+                <input type="button" id="button0" class="button button0" onClick="updateCode('0')"></input>
+                <input type="button" id="button1" class="button button1" onClick="updateCode('1')"></input>
+                <input type="button" id="button2" class="button button2" onClick="updateCode('2')"></input>
+                <input type="button" id="button3" class="button button3" onClick="updateCode('3')"></input>
+                <input type="button" id="button4" class="button button4" onClick="updateCode('4')"></input>
+                <input type="button" id="button5" class="button button5" onClick="updateCode('5')"></input>
+                <input type="button" id="button6" class="button button6" onClick="updateCode('6')"></input>
+                <input type="button" id="button7" class="button button7" onClick="updateCode('7')"></input>
+                <input type="button" id="button8" class="button button8" onClick="updateCode('8')"></input>
+                <input type="button" id="button9" class="button button9" onClick="updateCode('9')"></input>
+                <input type="button" id="buttonA" class="button buttonA" onClick="updateCode('A')"></input>
+                <input type="button" id="buttonb" class="button buttonb" onClick="updateCode('b')"></input>
+                <input type="button" id="buttonprogram" class="button buttonprogram"></input>
+                <input type="button" id="button2nd_octave" class="button button2nd_octave"
+                    onClick="updateCode('*')"></input>
+                <input type="button" id="buttontune_test" class="button buttontune_test"></input>
+                <input type="button" id="buttonfixed_tune" class="button buttonfixed_tune"
+                    onClick="updateCode(',')"></input>
+            </div>
 
-    <div class="container2">
-        <input type="button" id="buttonreset" class="button buttonreset" onClick="reset()"></input>
-        <div class="tempo_container">
-            <input type="button" id="buttonslow" class="tempo_button" value="SLOW"
-                onClick="updateTempo('SLOW')"></input>
-            <input type="button" id="buttonmedium" class="tempo_button" value="MEDIUM"
-                onClick="updateTempo('MEDIUM')"></input>
-            <input type="button" id="buttonfast" class="tempo_button" value="FAST"
-                onClick="updateTempo('FAST')"></input>
+            <div class="container2">
+                <input type="button" id="buttonreset" class="button buttonreset" onClick="reset()"></input>
+                <div class="tempo_container">
+                    <input type="button" id="buttonslow" class="tempo_button" value="SLOW"
+                        onClick="updateTempo('SLOW')"></input>
+                    <input type="button" id="buttonmedium" class="tempo_button" value="MEDIUM"
+                        onClick="updateTempo('MEDIUM')"></input>
+                    <input type="button" id="buttonfast" class="tempo_button" value="FAST"
+                        onClick="updateTempo('FAST')"></input>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="instructions" style="float:left; padding:0px 25px">
+            <p style="font-size: 14px">
+                <b>Instructions</b>:
+                <br>
+                1. Write "Program" <br>
+                2. Enter code: <br>
+                a. "*" if second octave note<br>
+                b. Note code number<br>
+                c. Rhythm code number<br>
+                d. Comma<br>
+                3. "00" to end it
+                <br><br>
+            <b>Notes:</b><br>
+                C - 0<br>
+                C#/Db - 1<br>
+                D - 2 <br>
+                D#/Eb - 3<br>
+                E - 4 <br>
+                F - 5 <br>
+                F#/Gb - 6<br>
+                G - 7<br>
+                G#/Ab - 8<br>
+                A - 9<br>
+                A#/Bb - A<br>
+                B - b
+                <br><br>
+
+                <b>Rhythms:</b><br>
+                Eight Note - 1<br>
+                Quarter Note - 2<br>
+                Dotted Quarter Note - 3<br>
+                Half Note - 4 <br>
+                Dotted Half Note - 5<br>
+                Whole Note - 6
+            </p>
+        </div>
+
+        <div id="inputs" style="float:left">
+            Press program to enter the code for your song:
+            <br><br>
+            <form>
+                <textarea id="code" rows="10" cols="40"></textarea>
+            </form>
+            <br><br>
+            Tempo: <input type="text" id="tempo" name="tempo">
+            <br><br>
+            <button type="button" onClick="playSong()">PLAY</button>
+            
         </div>
     </div>
 
-    Press program to enter the NuTone code for your song:
-    <input type="text" id="code" name="code" size="40">
-    <br>
-    Tempo: <input type="text" id="tempo" name="tempo">
-    <br>
-    <button type="button" onClick="playSong()">PLAY</button>
 </body>
 
 </html>
