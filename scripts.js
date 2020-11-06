@@ -82,8 +82,8 @@ function playSong() {
         time_elapsed += note_duration;
 
         // reduces popping somewhat
-        gainNode.gain.exponentialRampToValueAtTime(0.5, time_elapsed - 0.05);
-        gainNode.gain.exponentialRampToValueAtTime(1, time_elapsed);
+        gainNode.gain.exponentialRampToValueAtTime(0.25, time_elapsed - 0.05);
+        gainNode.gain.exponentialRampToValueAtTime(0.5, time_elapsed);
     }
 
     oscillator.stop(time_elapsed);
