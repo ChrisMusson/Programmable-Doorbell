@@ -46,7 +46,7 @@ function playSong() {
     string = string.replace(/\s/g, "");
     var split_string = string.split(/,/);
 
-    const isValid = (str) => str.match(/^\**[\dAb][0-6]$/);
+    const isValid = (str) => str.match(/^\**[\dAb][1-6]$/);
     if (!split_string.slice(0, -1).every(isValid)) {
         alert("That is not a valid code. One or more of your notes doesn't match the form (0 or more asterisks) (0-9 or A or b) (1-6).\n Note that this is case sensitive.");
         return;
