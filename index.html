@@ -9,8 +9,7 @@
             var codeForm = document.getElementById("code")
             function show() { codeForm.style.visibility = "visible"; }
             function hide() { codeForm.style.visibility = "hidden"; }
-            hide();
-            function toggle() { codeForm.style.visibility == "hidden" ? show() : hide(); }
+            function toggle() { codeForm.style.visibility == "visible" ? hide() : show(); }
 
             document.getElementById("buttonprogram").addEventListener("click", toggle, false);
             document.getElementById("tempo").value = "MEDIUM"
@@ -151,6 +150,10 @@
 
         .buttonreset {
             background-image: url("images/reset.png");
+        }
+
+        #code {
+            visibility: hidden;
         }
     </style>
 </head>
