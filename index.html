@@ -14,6 +14,19 @@
 
             document.getElementById("buttonprogram").addEventListener("click", toggle, false);
             document.getElementById("tempo").value = "MEDIUM"
+
+            var hash = window.location.hash.substr(1)
+            if (hash !== "") {
+                var split = hash.split(",")
+                var tempo = split.shift()
+                var program = split.join(",")
+                if (!tempo || !program || !tempos[tempo.toLowerCase()]) {
+                    return;
+                }
+                document.getElementById("tempo").value = tempo
+                codeForm.value = program
+                show()
+            }
         }
     </script>
 
