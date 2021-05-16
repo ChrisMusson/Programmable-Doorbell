@@ -3,31 +3,6 @@
 
 <head>
     <script src="scripts.js"></script>
-    <script>
-        window.onload = function () {
-
-            var codeForm = document.getElementById("code")
-            function show() { codeForm.style.visibility = "visible"; }
-            function hide() { codeForm.style.visibility = "hidden"; }
-            function toggle() { codeForm.style.visibility == "visible" ? hide() : show(); }
-
-            document.getElementById("buttonprogram").addEventListener("click", toggle, false);
-            document.getElementById("tempo").value = "MEDIUM"
-
-            var hash = window.location.hash.substr(1)
-            if (hash !== "") {
-                var split = hash.split(",")
-                var tempo = split.shift()
-                var program = split.join(",")
-                if (!tempo || !program || !tempos[tempo.toLowerCase()]) {
-                    return;
-                }
-                document.getElementById("tempo").value = tempo
-                codeForm.value = program
-                show()
-            }
-        }
-    </script>
 
 
     <style>
@@ -152,7 +127,15 @@
             background-image: url("images/reset.png");
         }
 
-        #code {
+        .buttonright {
+            float: right;
+        }
+
+        .textshare {
+            width: *;
+        }
+
+        #code, #formshare {
             visibility: hidden;
         }
     </style>
@@ -256,7 +239,15 @@
             <br><br>
             Tempo: <input type="text" id="tempo" name="tempo">
             <br><br>
-            <button type="button" onClick="playSong()">PLAY</button>
+            <button id="buttonplay" type="button" onClick="playSong()">PLAY</button>
+            <button id="buttonshare" class="buttonright" type="button">SHARE</button>
+            <p>
+                <form id="formshare">
+                    <label for="textshare">URL:</label>
+                    <input name="textshare" id="textshare" class="textshare" type="text" readonly="true"/>
+                    <button id="buttoncopy" class="buttonright" type="button">COPY</button>
+                </form>
+            </p>
             <p>
                 <b>Example:</b>
                 <br>
