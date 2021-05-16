@@ -3,19 +3,6 @@
 
 <head>
     <script src="scripts.js"></script>
-    <script>
-        window.onload = function () {
-
-            var codeForm = document.getElementById("code")
-            function show() { codeForm.style.visibility = "visible"; }
-            function hide() { codeForm.style.visibility = "hidden"; }
-            hide();
-            function toggle() { codeForm.style.visibility == "hidden" ? show() : hide(); }
-
-            document.getElementById("buttonprogram").addEventListener("click", toggle, false);
-            document.getElementById("tempo").value = "MEDIUM"
-        }
-    </script>
 
 
     <style>
@@ -139,6 +126,18 @@
         .buttonreset {
             background-image: url("images/reset.png");
         }
+
+        .buttonright {
+            float: right;
+        }
+
+        .textshare {
+            width: *;
+        }
+
+        #code, #formshare {
+            visibility: hidden;
+        }
     </style>
 </head>
 
@@ -240,7 +239,15 @@
             <br><br>
             Tempo: <input type="text" id="tempo" name="tempo">
             <br><br>
-            <button type="button" onClick="playSong()">PLAY</button>
+            <button id="buttonplay" type="button" onClick="playSong()">PLAY</button>
+            <button id="buttonshare" class="buttonright" type="button">SHARE</button>
+            <p>
+                <form id="formshare">
+                    <label for="textshare">URL:</label>
+                    <input name="textshare" id="textshare" class="textshare" type="text" readonly="true"/>
+                    <button id="buttoncopy" class="buttonright" type="button">COPY</button>
+                </form>
+            </p>
             <p>
                 <b>Example:</b>
                 <br>

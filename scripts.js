@@ -1,3 +1,7 @@
+var codeForm;
+var shareForm;
+var shareText;
+
 var tempos = {
     "slow": 0.5,
     "medium": 0.75,
@@ -63,6 +67,8 @@ function playSong() {
         return;
     }
 
+    update();
+
     const base = 261.626 // frequency of middle C
     const y = Math.pow(2, 1 / 12) // frequency multiplier between 2 half notes
     var i;
@@ -89,7 +95,52 @@ function playSong() {
     oscillator.stop(time_elapsed);
 }
 
+function show() { codeForm.style.visibility = "visible"; }
+function hide() { codeForm.style.visibility = "hidden"; }
+function toggle() { codeForm.style.visibility == "visible" ? hide() : show(); }
 
+function update() {
+    shareText.value = window.location.href.replace(window.location.hash,"") + "#"
+    	+ document.getElementById("tempo").value + ","
+    	+ codeForm.value;
+}
 
+function share() {
+    shareForm.style.visibility = "visible";
+    update()
+}
 
+function copy() {
+    shareText.select();
+    shareText.setSelectionRange(0, Number.MAX_SAFE_INTEGER);
+    document.execCommand("copy");
+}
 
+window.onload = function () {
+
+    codeForm = document.getElementById("code");
+    shareForm = document.getElementById("formshare");
+    shareText = document.getElementById("textshare");
+
+    document.getElementById("buttonprogram").addEventListener("click", toggle, false);
+    document.getElementById("tempo").value = "MEDIUM"
+
+    
+    document.getElementById("buttonshare").addEventListener("click", share, false);
+
+    
+    document.getElementById("buttoncopy").addEventListener("click", copy, false);
+
+    var hash = window.location.hash.substr(1)
+    if (hash !== "") {
+        var split = hash.split(",")
+        var tempo = split.shift()
+        var program = split.join(",")
+        if (!tempo || !program || !tempos[tempo.toLowerCase()]) {
+            return;
+        }
+        document.getElementById("tempo").value = tempo
+        codeForm.value = program
+        show()
+    }
+}
