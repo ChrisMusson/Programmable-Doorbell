@@ -102,7 +102,7 @@ function toggle() { codeForm.style.visibility == "visible" ? hide() : show(); }
 function update() {
     shareText.value = window.location.href.replace(window.location.hash,"") + "#"
     	+ document.getElementById("tempo").value + ","
-    	+ codeForm.value;
+    	+ codeForm.value.replace(/\s+/g,"");
 }
 
 function share() {
